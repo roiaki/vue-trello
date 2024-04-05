@@ -1,26 +1,27 @@
 <template>
-
-<form :class="classList" @submit.prevent="addList">
-  <input 
-    v-model="title"
-    type="text"
-    class="text-input"
-    placeholder="Add new list"
-    @focusin="startEditing"
-    @focusout="finishEditing"
-  >
- 
-  <button type="submit"
-          class="add-button"
-          v-if="isEditing || titleExists">
-    Add
-  </button>
-</form>
-
+  <form :class="classList" @submit.prevent="addList">
+    <input 
+      v-model="title"
+      type="text"
+      class="text-input"
+      placeholder="Add new list"
+      @focusin="startEditing"
+      @focusout="finishEditing"
+    >
+    <button
+      type="submit"
+      class="add-button"
+      v-if="isEditing || titleExists"
+    >
+      Add
+    </button>
+  </form>
 </template>
 
 <script>
 export default {
+  // データプロパティ、コンポーネントの内部状態を保持する
+  // this.title this.isEditing でアクセスできる
   data: function() {
     return {
       title: '',
@@ -30,7 +31,6 @@ export default {
   computed: {
     classList() {
       const classList = ['addlist']
-      
       if (this.isEditing) {
         classList.push('active')
       }
@@ -38,7 +38,6 @@ export default {
       if (this.titleExists) {
         classList.push('addable')
       }
-
       return classList
     },
 
@@ -49,7 +48,9 @@ export default {
   },
   methods: {
     addList: function() {
-      this.$store.dispatch('addlist', { title: this.title })
+      // storeのactionsを呼ぶ
+      // -> actions -> mutations
+      this.$store.dispatch('addlistAction', { title: this.title })
       this.title = ''
     },
     startEditing: function() {

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const savedLists = localStorage.getItem('trello-lists')
 
 const store =  new Vuex.Store({
+  // アプリで共有されるデータ
   state: {
     lists: savedLists ? JSON.parse(savedLists): [
       {
@@ -27,8 +28,10 @@ const store =  new Vuex.Store({
       }
     ],
   },
+  // Stateを変更する唯一の方法
   mutations: {
-    addlist(state, payload) {
+    // state 現在のストアの状態、payload アクションから渡されたデータ
+    addlistMutation(state, payload) {
       state.lists.push({ title: payload.title, cards:[] })
     },
     removelist(state, payload) {
@@ -44,9 +47,12 @@ const store =  new Vuex.Store({
       state.lists = payload.lists
     }
   },
+ 
   actions: {
-    addlist(context, payload) {
-      context.commit('addlist', payload)
+    // コミットするとストア内の状態が変更される
+    addlistAction(context, payload) {
+      // mutations の呼び出し
+      context.commit('addlistMutation', payload)
     },
     removelist(context, payload) {
       context.commit('removelist', payload)
@@ -70,6 +76,7 @@ const store =  new Vuex.Store({
   }
 })
 
+// データの状態を更新後にlocalStorageへデータの状態を保存
 store.subscribe((mutation, state) => {
   localStorage.setItem('trello-lists', JSON.stringify(state.lists))
 })
