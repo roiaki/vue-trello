@@ -1,5 +1,5 @@
 html {
-    background: orange;
+    background: ;
     font-family: 'Avenir', Helvetica, Arial, 'system-ui', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -46,10 +46,12 @@ html {
   .text-input {
     padding: 20px 15px;
     width: calc(100% - 30px);
-    background-color: #ccc;
-    border-radius: 8px;
+    /* background-color: #f2ecec; */
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-color: #9caef0; 
     cursor: pointer;
-    border: none;
+    /* border: none; */
     font-family: "Noto Sans Japanese", "Noto Sans", 'system-ui', sans-serif;
     font-weight: 700;
     font-size: 24px;
@@ -101,7 +103,7 @@ html {
     align-items: flex-start;
     min-width: 290px;
     width: 290px;
-    background-color: #e0e0e0;
+    background-color: #f0eeee;
     border-radius: 8px;
     padding: 15px;
     border: solid #ddd 1px;

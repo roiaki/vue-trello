@@ -1,18 +1,17 @@
 <template>
-   
   <form :class="classList" @submit.prevent="addCardToList">
-    <input v-model="body"
-           type="text"
-           class="text-input"
-           placeholder="Add new card"
-           @focusin="startEditing"
-           @focusout="finishEditing"
+    <input
+      v-model="body"
+      type="text"
+      class="text-input"
+      placeholder="Add new card"
+      @focusin="startEditing"
+      @focusout="finishEditing"
     />
     <button type="submit" class="add-button" v-if="isEditing || bodyExists">
       Add
     </button>
   </form>
-
 </template>
 
 <script>
@@ -23,6 +22,7 @@ export default {
       required: true,
     }
   },
+  // v-model body でdataプロパティとバインド
   data: function() {
     return {
       body: '',
@@ -54,7 +54,7 @@ export default {
     },
 
     addCardToList: function() {
-      this.$store.dispatch('addCardToList', { body: this.body, listIndex: this.listIndex })
+      this.$store.dispatch('addCardToListAction', { body: this.body, listIndex: this.listIndex })
       this.body = ''
     }
   }

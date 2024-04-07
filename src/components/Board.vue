@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      my Trello
+      Vue2 Trello
     </header>
     <main>
       <p class="info-line">All: {{ totalCardCount }} tasks</p>
@@ -46,10 +46,10 @@ export default {
   },
   methods: {
     movingCard: function() {
-      this.$store.dispatch('updateList', { lists: this.lists })
+      this.$store.dispatch('updateListAction', { lists: this.lists })
     },
     movingList: function() {
-      this.$store.dispatch('updateList', { lists: this.lists })
+      this.$store.dispatch('updateListAction', { lists: this.lists })
     }
   }
 }

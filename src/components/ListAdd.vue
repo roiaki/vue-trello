@@ -4,7 +4,7 @@
       v-model="title"
       type="text"
       class="text-input"
-      placeholder="Add new list"
+      placeholder="リストの追加はこちらから"
       @focusin="startEditing"
       @focusout="finishEditing"
     >
@@ -34,22 +34,19 @@ export default {
       if (this.isEditing) {
         classList.push('active')
       }
-
       if (this.titleExists) {
         classList.push('addable')
       }
       return classList
     },
-
     titleExists() {
       return this.title.length > 0
     },
-
   },
   methods: {
     addList: function() {
       // storeのactionsを呼ぶ
-      // -> actions -> mutations
+      //  -> actions -> mutations
       this.$store.dispatch('addlistAction', { title: this.title })
       this.title = ''
     },

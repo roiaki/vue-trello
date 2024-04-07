@@ -31,40 +31,46 @@ const store =  new Vuex.Store({
   // Stateを変更する唯一の方法
   mutations: {
     // state 現在のストアの状態、payload アクションから渡されたデータ
+    // actions から呼ばれた
     addlistMutation(state, payload) {
       state.lists.push({ title: payload.title, cards:[] })
     },
-    removelist(state, payload) {
+    removelistMutation(state, payload) {
       state.lists.splice(payload.listIndex, 1)
     },
-    addCardToList(state, payload) {
+    addCardToListMutation(state, payload) {
       state.lists[payload.listIndex].cards.push({ body: payload.body })
     },
-    removeCardFromList(state, payload) {
+    removeCardFromListMutation(state, payload) {
       state.lists[payload.listIndex].cards.splice(payload.cardIndex, 1)
     },
-    updateList(state, payload) {
+    updateListMutation(state, payload) {
       state.lists = payload.lists
     }
   },
  
   actions: {
     // コミットするとストア内の状態が変更される
+    // methods addList から呼ばれた
     addlistAction(context, payload) {
       // mutations の呼び出し
       context.commit('addlistMutation', payload)
     },
-    removelist(context, payload) {
-      context.commit('removelist', payload)
+    removelistAction(context, payload) {
+      context.commit('removelistMutation', payload)
     },
-    addCardToList(context, payload) {
-      context.commit('addCardToList', payload)
+
+    //カード追加 method addCardToList から呼ばれた
+    addCardToListAction(context, payload) {
+      context.commit('addCardToListMutation', payload)
     },
-    removeCardFromList(context, payload) {
-      context.commit('removeCardFromList', payload)
+
+    removeCardFromListAction(context, payload) {
+      context.commit('removeCardFromListMutation', payload)
     },
-    updateList(context, payload) {
-      context.commit('updateList', payload)
+
+    updateListAction(context, payload) {
+      context.commit('updateListMutation', payload)
     }
   },
   getters: {
