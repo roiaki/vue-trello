@@ -4,12 +4,12 @@
       v-model="body"
       type="text"
       class="text-input"
-      placeholder="Add new card"
+      placeholder="タイトルを追加する"
       @focusin="startEditing"
       @focusout="finishEditing"
     />
     <button type="submit" class="add-button" v-if="isEditing || bodyExists">
-      Add
+      追加
     </button>
   </form>
 </template>
